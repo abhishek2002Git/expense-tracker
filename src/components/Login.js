@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import transContext from "../context/trans/transContext";
 
 const Login = (props) => {
+  const context = useContext(transContext);
+  const {host } = context;
+
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [alertMessage, setAlertMessage] = useState("")
   // ^ provides alert message when login fails or succeeds
@@ -19,9 +23,8 @@ const Login = (props) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // const response = await fetch("http://localhost:5000/api/auth/login", {
     const response = await fetch(
-      "http://localhost:5000/api/auth/login",
+      `${host}/api/auth/login`,
       {
         method: "POST",
         headers: {

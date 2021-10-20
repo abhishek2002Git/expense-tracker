@@ -2,7 +2,7 @@ import TransContext from "./transContext";
 import { useState } from "react";
 
 const TransState = (props) => {
-  const host = "http://localhost:5000"
+  const host = "https://backendexpen.herokuapp.com"
 
     const transInitial = []
 
@@ -118,7 +118,7 @@ const TransState = (props) => {
       }
     
     return (
-        <TransContext.Provider value={{trans, addTrans, deleteTrans, editTrans, getTrans, getData, userData, balance, getBalance}}>
+        <TransContext.Provider value={{host, trans, addTrans, deleteTrans, editTrans, getTrans, getData, userData, balance, getBalance}}>
             {props.children}
         </TransContext.Provider>
 

@@ -1,7 +1,11 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {Link, useHistory } from "react-router-dom";
+import transContext from "../context/trans/transContext";
 
 const Signup = (props) => {
+  const context = useContext(transContext);
+  const {host } = context;
+
     const [credentials, setCredentials] = useState({name: "" , email: "" , password: "", cpassword: ""})
     let history = useHistory();
     
@@ -20,7 +24,7 @@ const Signup = (props) => {
     const handleSubmit = async (e) =>{
         e.preventDefault();
         const {name, email, password} = credentials;
-        const response = await fetch("http://localhost:5000/api/auth/createuser", {
+        const response = await fetch(`${host}/api/auth/createuser`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
